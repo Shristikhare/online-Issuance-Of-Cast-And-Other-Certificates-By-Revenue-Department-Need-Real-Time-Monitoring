@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAN Verification</title>
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: #f9faff;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 420px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+    .progress-bar {
+        height: 6px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, #6A5AE0 5%, #e0e0e0 5%);
+        margin-bottom: 20px;
+    }
+    h2 {
+        margin: 0 0 8px;
+        font-size: 1.4rem;
+        color: #333;
+    }
+    p {
+        font-size: 0.9rem;
+        color: #777;
+        margin-bottom: 20px;
+    }
+    .pan-card {
+        background: linear-gradient(135deg, #e6f0ff, #f2f7ff);
+        padding: 15px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+    }
+    .avatar {
+        width: 50px;
+        height: 50px;
+        background: #dce6ff;
+        border-radius: 50%;
+    }
+    .details {
+        flex: 1;
+    }
+    .details p {
+        margin: 3px 0;
+        font-size: 0.85rem;
+        color: #555;
+    }
+    input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+        font-size: 0.95rem;
+        outline: none;
+        transition: 0.3s;
+    }
+    input:focus {
+        border-color: #6A5AE0;
+        box-shadow: 0 0 5px rgba(106,90,224,0.3);
+    }
+    .note {
+        font-size: 0.8rem;
+        color: #555;
+        margin-bottom: 20px;
+    }
+    .btn {
+        display: block;
+        width: 100%;
+        background: #6A5AE0;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        text-align: center;
+        transition: background 0.3s;
+    }
+    .btn:hover {
+        background: #5948c6;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="progress-bar"></div>
+    <h2>PAN Verification</h2>
+    <p>Enter your PAN Card details. PAN Card is mandatory for investing in India.</p>
+
+    <div class="pan-card">
+        <div class="avatar"></div>
+        <div class="details">
+            <p><strong>PAN:</strong> XXXXX XXXX XXXX</p>
+            <p><strong>Name:</strong> XXXX XXXX XXXX</p>
+            <p><strong>Father's Name:</strong> XXXX XXXX XXXX</p>
+            <p><strong>DOB:</strong> DD/MM/YYYY</p>
+        </div>
+    </div>
+
+    <input type="text" placeholder="Enter PAN Number">
+    
+    <p class="note">You will be redirected to <strong>DigiLocker</strong>, a secure Government of India platform, to fetch your PAN and Aadhaar digitally.</p>
+
+    <button class="btn"><a href="C:\Users\Lenovo\sarthAK 1.PY\aadhar.html">Proceed to DigiLocker</a></button>
+
+    
+    
+</div>
+
+</body>
+</html>

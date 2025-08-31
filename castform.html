@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Certificate Application – Revenue Dept</title>
+<style>
+  :root{
+    --primary:#6A5AE0;
+    --primary-dark:#4b3cc4;
+    --bg:#f6f7ff;
+    --card:#ffffff;
+    --text:#1f2430;
+    --muted:#6b7280;
+    --ok:#0ea5e9;
+    --warn:#f59e0b;
+    --bad:#ef4444;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
+    background:linear-gradient(160deg,#f9f9ff,#eef1ff 60%,#e9ecff);
+    color:var(--text);
+  }
+  .wrap{max-width:980px;margin:22px auto;padding:20px}
+  header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  header img{height:36px}
+  header h1{font-size:1.2rem;margin:0}
+  .card{
+    background:var(--card);border-radius:var(--radius);padding:22px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+  }
+  .progress{height:8px;border-radius:99px;background:#eef;overflow:hidden;margin-bottom:18px}
+  .bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),#8a7df3)}
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:8px 0 18px}
+  .step{
+    text-align:center;font-size:.8rem;color:var(--muted);padding:6px 4px;border-radius:10px;
+    border:1px dashed #e5e7eb
+  }
+  .step.active{color:#fff;background:var(--primary);border:none}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  @media (max-width:780px){.grid,.grid-3{grid-template-columns:1fr}}
+  label{font-size:.9rem;margin-bottom:6px;display:block;color:#374151}
+  input,select,textarea{
+    width:100%;padding:12px 12px;border-radius:10px;border:1px solid #e5e7eb;background:#fff;
+    font-size:1rem;outline:0;transition:border .2s, box-shadow .2s;
+  }
+  input:focus,select:focus,textarea:focus{
+    border-color:var(--primary);box-shadow:0 0 0 3px rgba(106,90,224,.15)
+  }
+  .hint{font-size:.8rem;color:var(--muted);margin-top:6px}
+  .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .btn{
+    padding:11px 16px;border-radius:10px;border:none;cursor:pointer;font-weight:600
+  }
+  .primary{background:var(--primary);color:#fff}
+  .primary:hover{background:var(--primary-dark)}
+  .ghost{background:#eef; color:#3f3f46}
+  .danger{background:var(--bad);color:#fff}
+  .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef;color:#475569;font-size:.78rem}
+  .uploader{border:2px dashed #dbe2ff;padding:16px;border-radius:12px;background:#fafbff}
+  .pair{display:flex;justify-content:space-between;gap:10px;margin:8px 0;border-bottom:1px dashed #eee;padding-bottom:8px}
+  .pair span:first-child{color:#6b7280}
+  .footer-note{font-size:.78rem;color:#64748b;margin-top:10px}
+  .success{background:#ecfeff;border:1px solid #bae6fd;color:#0369a1;padding:12px;border-radius:10px}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="C:\Users\Lenovo\Downloads\Gov Logo.png" alt="India Emblem">
+    <h1>Revenue Department — Online Certificate Application</h1>
+    <span class="badge">Beta</span>
+  </header>
+
+  <div class="card">
+    <div class="progress"><div class="bar" id="bar"></div></div>
+    <div class="steps">
+      <div class="step active">1. Applicant</div>
+      <div class="step">2. Address</div>
+      <div class="step">3. Certificate</div>
+      <div class="step">4. Upload</div>
+      <div class="step">5. Review & Submit</div>
+    </div>
+
+    <!-- STEP 1 -->
+    <section class="" data-step="1">
+      <div class="grid">
+        <div>
+          <label>Full Name (as per Aadhaar)</label>
+          <input id="name" required placeholder="e.g., Shristi Khare"/>
+        </div>
+        <div>
+          <label>Father’s / Mother’s Name</label>
+          <input id="parent" required placeholder="e.g., Ramesh Khare"/>
+        </div>
+        <div>
+          <label>Date of Birth</label>
+          <input id="dob" type="date" required/>
+        </div>
+        <div>
+          <label>Mobile Number</label>
+          <input id="phone" type="tel" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile"/>
+          <div class="hint">We’ll send updates & OTP (mock) to this number.</div>
+        </div>
+        <div>
+          <label>Aadhaar (last 4)</label>
+          <input id="aadhaar" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" placeholder="XXXX"/>
+        </div>
+        <div>
+          <label>PAN (optional)</label>
+          <input id="pan" maxlength="10" placeholder="ABCDE1234F"/>
+        </div>
+      </div>
+      <div class="row" style="justify-content:flex-end">
+        <button class="btn primary" data-next>Next</button>
+        
+      </div>
+    </section>
+
+    <!-- STEP 2 -->
+    <section class="hidden" data-step="2">
+      <div class="grid">
+        <div>
+          <label>Address Line 1</label>
+          <input id="addr1" required placeholder="House/Street"/>
+        </div>
+        <div>
+          <label>Address Line 2</label>
+          <input id="addr2" placeholder="Area/Locality"/>
+        </div>
+        <div>
+          <label>State</label>
+          <select id="state">
+            <option value="">Select</option>
+            <option>Delhi</option><option>Maharashtra</option><option>Karnataka</option>
+            <option>Uttar Pradesh</option><option>Madhya Pradesh</option><option>Rajasthan</option>
+          </select>
+        </div>
+        <div>
+          <label>District</label>
+          <input id="district" placeholder="District"/>
+        </div>
+        <div>
+          <label>Pincode</label>
+          <input id="pincode" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" placeholder="6-digit"/>
+        </div>
+        <div>
+          <label>Email (optional)</label>
+          <input id="email" type="email" placeholder="name@email.com"/>
+        </div>
+      </div>
+      <div class="row" style="justify-content:space-between">
+        <button class="btn ghost" data-prev>Back</button>
+        <button class="btn primary" data-next>Next</button>
+      </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section class="hidden" data-step="3">
+      <div class="grid">
+        <div>
+          <label>Certificate Type</label>
+          <select id="ctype" required>
+            <option value="">Select certificate</option>
+            <option value="Caste">Caste Certificate</option>
+            <option value="Income">Income Certificate</option>
+            <option value="Residence">Residence Certificate</option>
+            <option value="Birth">Birth Certificate</option>
+          </select>
+        </div>
+        <div>
+          <label>Category (only for Caste)</label>
+          <select id="cat">
+            <option value="">Select</option>
+            <option>SC</option><option>ST</option><option>OBC</option><option>General</option>
+          </select>
+        </div>
+        <div class="grid-3" style="grid-column:1/-1">
+          <div>
+            <label>Purpose</label>
+            <input id="purpose" placeholder="e.g., Scholarship, Job, Admission"/>
+          </div>
+          <div>
+            <label>Urgency</label>
+            <select id="urgency">
+              <option>Normal (7–10 days)</option>
+              <option>Priority (2–3 days)</option>
+            </select>
+          </div>
+          <div>
+            <label>Preferred Language</label>
+            <select id="lang"><option>English</option><option>Hindi</option></select>
+          </div>
+        </div>
+        <div style="grid-column:1/-1">
+          <label>Additional Remarks</label>
+          <textarea id="remarks" rows="3" placeholder="Any extra info…"></textarea>
+        </div>
+      </div>
+      <div class="row" style="justify-content:space-between">
+        <button class="btn ghost" data-prev>Back</button>
+        <button class="btn primary" data-next>Next</button>
+      </div>
+    </section>
+
+    <!-- STEP 4 -->
+    <section class="hidden" data-step="4">
+      <div class="uploader">
+        <label>Upload Documents (PDF/JPG/PNG)</label>
+        <div class="hint">Identity proof, address proof, photo, supporting documents. Max 5 files.</div>
+        <input id="files" type="file" multiple accept=".pdf,.jpg,.jpeg,.png"/>
+      </div>
+      <div class="row">
+        <label class="badge">By submitting, I confirm the information is true and correct.</label>
+      </div>
+      <div class="row" style="justify-content:space-between">
+        <button class="btn ghost" data-prev>Back</button>
+        <button class="btn primary" data-next>Review</button>
+      </div>
+    </section>
+
+    <!-- STEP 5 -->
+    <section class="hidden" data-step="5">
+      <div class="success">Review your details below. Click “Submit Application” to finish.</div>
+      <div id="review"></div>
+      <div class="row" style="justify-content:space-between;margin-top:10px">
+        <button class="btn ghost" data-prev>Back</button>
+        <button class="btn primary" id="submitBtn">Submit Application</button>
+        <button class="btn danger" id="resetBtn">Reset</button>
+      </div>
+      <div class="footer-note">After submit, the sample data is printed to console (simulate API). Hook this to your backend.</div>
+    </section>
+  </div>
+</div>
+
+<script>
+  const steps = [...document.querySelectorAll('section[data-step]')];
+  const stepPills = [...document.querySelectorAll('.step')];
+  const bar = document.getElementById('bar');
+  let current = 0;
+
+  const showStep = (i)=>{
+    steps.forEach((s,idx)=>s.classList.toggle('hidden', idx!==i));
+    stepPills.forEach((p,idx)=>p.classList.toggle('active', idx<=i));
+    bar.style.width = ((i+1)/steps.length*100)+'%';
+    current = i;
+  };
+
+  document.querySelectorAll('[data-next]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(!validate(current)) return;
+      showStep(Math.min(current+1, steps.length-1));
+      if(current===steps.length-1) buildReview();
+    });
+  });
+  document.querySelectorAll('[data-prev]').forEach(btn=>{
+    btn.addEventListener('click', ()=> showStep(Math.max(current-1,0)));
+  });
+
+  function validate(i){
+    // Simple required checks per step
+    if(i===0){
+      const req = ['name','parent','dob','phone'];
+      for(const id of req){
+        const el = document.getElementById(id);
+        if(!el.value.trim()){
+          alert('Please fill: '+id.toUpperCase());
+          el.focus(); return false;
+        }
+      }
+      const ph = document.getElementById('phone').value.trim();
+      if(!/^\d{10}$/.test(ph)){ alert('Enter valid 10-digit mobile'); return false; }
+      const pan = document.getElementById('pan').value.trim();
+      if(pan && !/^[A-Z]{5}\d{4}[A-Z]$/.test(pan.toUpperCase())){
+        alert('PAN format looks invalid'); return false;
+      }
+    }
+    if(i===1){
+      const req = ['addr1','state','district','pincode'];
+      for(const id of req){
+        const el = document.getElementById(id);
+        if(!el.value.trim()){ alert('Please fill: '+id); el.focus(); return false; }
+      }
+      if(!/^\d{6}$/.test(document.getElementById('pincode').value.trim())){
+        alert('Enter valid 6-digit pincode'); return false;
+      }
+    }
+    if(i===2){
+      if(!document.getElementById('ctype').value){
+        alert('Select certificate type'); return false;
+      }
+    }
+    return true;
+  }
+
+  function buildReview(){
+    const data = collect();
+    const wrap = document.getElementById('review');
+    wrap.innerHTML = '';
+    const section = (title, pairs)=>{
+      const box = document.createElement('div');
+      box.style.marginTop = '16px';
+      box.innerHTML = <h3 style="margin:6px 0">${title}</h3>;
+      pairs.forEach(([k,v])=>{
+        const row = document.createElement('div'); row.className='pair';
+        row.innerHTML = <span>${k}</span><span><b>${v||'-'}</b></span>;
+        box.appendChild(row);
+      });
+      wrap.appendChild(box);
+    };
+    section('Applicant',[
+      ['Name',data.name],['Parent',data.parent],['DOB',data.dob],
+      ['Mobile',data.phone],['Aadhaar (last 4)',data.aadhaar],['PAN',data.pan]
+    ]);
+    section('Address',[
+      ['Address 1',data.addr1],['Address 2',data.addr2],['State',data.state],
+      ['District',data.district],['Pincode',data.pincode],['Email',data.email]
+    ]);
+    section('Certificate',[
+      ['Type',data.ctype],['Category',data.cat],['Purpose',data.purpose],
+      ['Urgency',data.urgency],['Language',data.lang],['Remarks',data.remarks]
+    ]);
+    const files = (data.files||[]).map(f=>f.name).join(', ');
+    section('Uploads', [['Files', files || 'None selected']]);
+  }
+
+  function collect(){
+    const get = id => document.getElementById(id)?.value?.trim() || '';
+    const f = document.getElementById('files');
+    return {
+      name:get('name'), parent:get('parent'), dob:get('dob'), phone:get('phone'),
+      aadhaar:get('aadhaar'), pan:get('pan').toUpperCase(),
+      addr1:get('addr1'), addr2:get('addr2'), state:get('state'),
+      district:get('district'), pincode:get('pincode'), email:get('email'),
+      ctype:get('ctype'), cat:get('cat'), purpose:get('purpose'),
+      urgency:get('urgency'), lang:get('lang'), remarks:get('remarks'),
+      files:[...(f?.files||[])]
+    };
+  }
+
+  document.getElementById('submitBtn').addEventListener('click', ()=>{
+    const payload = collect();
+
+    // Example: send to backend
+    // fetch('/api/applications',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+
+    console.log('SUBMITTED PAYLOAD →', payload);
+    alert('Application submitted! (Open console to see payload)');
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', ()=>{
+    document.querySelector('form')?.reset?.(); // if wrapped in form later
+    window.location.reload();
+  });
+
+  // Start
+  showStep(0);
+</script>
+</body>
+</html>
